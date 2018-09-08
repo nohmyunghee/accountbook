@@ -51,7 +51,7 @@ def get_monthly_deal(year, month):
     print("{}年{}月共有{}笔交易.".format(year, month, deal_count))
     for deal in month_deal_list:
         for day in range(1, 32):
-            if int(deal['date']['year']) == year and int(deal['date']['month']) == month and int(deal['date']['day']) == day:
+            if int(deal['date']['year']) == int(year) and int(deal['date']['month']) == int(month) and int(deal['date']['day']) == int(day):
                 print("日期：{}-{}-{}\n类别：{}\n消费金额：{}\n详情：{}\n".format(deal['date']['year'], deal['date']['month'], deal['date']['day'], deal['category'], deal['amount'], deal['note']))
 
 def get_daily_deal(year, month, day):
@@ -59,7 +59,8 @@ def get_daily_deal(year, month, day):
     month_deal_list = json.load(open('./Records/' + record_file_name + '.json', 'r'))
 
     for deal in month_deal_list:
-        if deal['date']['year'] == year and deal['date']['month'] == month and deal['date']['day'] == day:
+        if deal['date']['year'] == int(year) and deal['date']['month'] == int(month) and deal['date']['day'] == int(day):
             print("日期：{}-{}-{}\n类别：{}\n消费金额：{}\n详情：{}\n".format(deal['date']['year'], deal['date']['month'],
                                                                 deal['date']['day'], deal['category'], deal['amount'],
                                                                 deal['note']))
+
